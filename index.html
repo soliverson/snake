@@ -3,49 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Snake Game</title>
+    <title>Christmas Snake Game</title>
     <style>
         body {
             display: flex;
-            justify-content: space-around;
+            flex-direction: column;
+            justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-color: #222;
+            background-color: #004400; /* Dark green for Christmas theme */
             color: white;
             font-family: Arial, sans-serif;
         }
+        .game-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 90vw;
+            max-width: 400px;
+        }
         canvas {
             border: 2px solid #fff;
-            background-color: #000;
+            background-color: #111; /* Slightly darker background */
+            width: 100%;
+            height: auto;
         }
         .instructions {
-            max-width: 200px;
-            text-align: left;
+            max-width: 90%;
+            text-align: center;
+            margin-top: 20px;
         }
         .instructions h3 {
             margin-bottom: 10px;
         }
+        .instructions ul {
+            padding-left: 20px;
+            list-style: none;
+        }
+        .instructions ul li {
+            margin-bottom: 5px;
+        }
     </style>
 </head>
 <body>
-    <div class="instructions">
-        <h3>How to Play:</h3>
-        <ul>
-            <li>Use the <b>Arrow Keys</b> to move the snake:</li>
+    <div class="game-container">
+        <canvas id="gameCanvas" width="400" height="400"></canvas>
+        <div class="instructions">
+            <h3>🎄 How to Play 🎅:</h3>
             <ul>
-                <li>⬆️ Up</li>
-                <li>⬇️ Down</li>
-                <li>⬅️ Left</li>
-                <li>➡️ Right</li>
+                <li>Use the <b>Arrow Keys</b> to move the snake:</li>
+                <ul>
+                    <li>⬆️ Up</li>
+                    <li>⬇️ Down</li>
+                    <li>⬅️ Left</li>
+                    <li>➡️ Right</li>
+                </ul>
+                <li>Eat the <b>red ornaments</b> to grow longer.</li>
+                <li>Avoid crashing into walls or yourself!</li>
+                <li>The game starts automatically when you press an arrow key.</li>
             </ul>
-            <li>Eat the red food to grow longer.</li>
-            <li>Avoid crashing into walls or yourself!</li>
-            <li>The game starts automatically when you press an arrow key.</li>
-        </ul>
-        <p>Enjoy the game!</p>
+            <p>🎁 Enjoy the festive game! 🎁</p>
+        </div>
     </div>
-    <canvas id="gameCanvas" width="400" height="400"></canvas>
     <script>
         const canvas = document.getElementById('gameCanvas');
         const ctx = canvas.getContext('2d');
@@ -66,11 +86,11 @@
         }
 
         function drawSnake() {
-            snake.forEach(segment => drawRect(segment.x, segment.y, 'lime'));
+            snake.forEach(segment => drawRect(segment.x, segment.y, '#00FF00')); // Bright green snake
         }
 
         function drawFood() {
-            drawRect(food.x, food.y, 'red');
+            drawRect(food.x, food.y, '#FF0000'); // Red ornament-like food
         }
 
         function update() {
@@ -158,7 +178,7 @@
         document.addEventListener('keydown', changeDirection);
 
         restartGame(); // Ensure the snake starts moving
-        setInterval(gameLoop, 100);
+        setInterval(gameLoop, 150);
     </script>
 </body>
 </html>
